@@ -46,7 +46,7 @@
   @media (max-width:640px) { nav ul li:nth-child(1), nav ul li:nth-child(2), nav ul li:nth-child(5) { display:none; } nav ul { gap:12px; font-size:.88rem; } .theme { margin-left:6px; } }
 
   /* hero */
-  .hero { position:relative; overflow:hidden; padding:110px 0 190px; }
+  .hero { position:relative; overflow:hidden; padding:110px 0 90px; }
   .blob { position:absolute; border-radius:50%; filter:blur(70px); opacity:.3; z-index:-1; animation:float 14s ease-in-out infinite alternate; }
   .b1 { width:380px; height:380px; background:var(--a1); top:-80px; left:-100px; }
   .b2 { width:420px; height:420px; background:var(--a2); top:40px; right:-140px; animation-delay:-5s; }
@@ -84,7 +84,6 @@
   .job:nth-child(3n)::before { border-color:var(--a3); }
   .when { font-size:.85rem; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
 
-  .about p { font-size:1.05rem; line-height:1.7; margin:0 0 12px; } .about p:last-child { margin:0; }
   .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px; box-shadow:var(--shadow); }
   .edu { border-left:6px solid var(--a2); }
   #leadership .card + .card { margin-top:16px; }
@@ -145,6 +144,16 @@
   .d-white { fill:#fff; font:600 14px "Inter",system-ui,sans-serif; }
   .d-arrow { stroke:var(--muted); stroke-width:2; fill:none; marker-end:url(#ah); }
 
+  /* about */
+  .about { display:grid; grid-template-columns:1.6fr 1fr; gap:36px; align-items:start; }
+  .about-text p { margin:0 0 14px; font-size:1.05rem; }
+  .about-text p:first-child { font-size:1.2rem; }
+  .facts { list-style:none; margin:0; padding:20px 22px; background:var(--card); border:1px solid var(--line); border-radius:18px; box-shadow:var(--shadow); }
+  .facts li { padding:10px 0; border-bottom:1px solid var(--line); font-size:.95rem; }
+  .facts li:last-child { border-bottom:0; }
+  .facts b { display:block; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--a1t); margin-bottom:2px; }
+  @media (max-width:760px) { .about { grid-template-columns:1fr; } }
+
   /* skills */
   .skills { display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
   .skills h3 { margin-bottom:10px; font-size:.95rem; color:var(--muted); font-weight:600; }
@@ -194,9 +203,9 @@
   .theme:hover { border-color:var(--a1); }
 
   /* hero forecast chart: decorative, draws the "actual" line then fades in a dashed forecast and its range */
-  .hero-chart { position:absolute; left:0; bottom:20px; width:100%; height:150px; z-index:-1; opacity:.5; pointer-events:none; }
+  .hero-chart { position:absolute; left:calc(50% + 190px); right:0; top:60px; bottom:30px; width:auto; height:auto; z-index:-1; opacity:.55; pointer-events:none; }
   .hero-chart * { vector-effect:non-scaling-stroke; }
-  @media (max-width:760px) { .hero { padding-bottom:140px; } .hero-chart { height:100px; } }
+  @media (max-width:760px) { .hero { padding-bottom:150px; } .hero-chart { left:0; top:auto; bottom:20px; height:110px; } }
   .hc-line { fill:none; stroke:var(--a1); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; clip-path:inset(0 100% 0 0); animation:hc-draw 2.4s ease-out .3s forwards; }
   .hc-fc { fill:none; stroke:var(--a3); stroke-width:3; stroke-dasharray:8 8; opacity:0; animation:hc-fade .8s ease-out 2.6s forwards; }
   .hc-band { fill:var(--a3); opacity:0; animation:hc-band .8s ease-out 2.6s forwards; }
@@ -247,10 +256,10 @@
 
 <header class="hero">
   <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-  <svg class="hero-chart" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
-    <polygon class="hc-band" points="800,110 880,78 960,82 1040,46 1120,50 1200,20 1200,90 1120,110 1040,94 960,118 880,102 800,110"/>
-    <polyline class="hc-line" pathLength="1" points="0,220 80,200 160,215 240,170 320,185 400,140 480,160 560,120 640,135 720,95 800,110"/>
-    <polyline class="hc-fc" points="800,110 880,90 960,100 1040,70 1120,80 1200,55"/>
+  <svg class="hero-chart" viewBox="0 0 600 400" preserveAspectRatio="none" aria-hidden="true">
+    <polygon class="hc-band" points="420,190 480,138 540,96 600,30 600,150 540,160 480,170 420,190"/>
+    <polyline class="hc-line" points="0,385 60,350 120,368 180,300 240,322 300,250 360,272 420,190"/>
+    <polyline class="hc-fc" points="420,190 480,150 540,124 600,82"/>
   </svg>
   <div class="wrap hero-grid">
   <div>
@@ -278,12 +287,21 @@
 
   <section id="about" class="rv">
     <h2 class="serif"><small>01</small>About me</h2>
-    <div class="card about">
-      <p>I’m Tri Vi, a Business Analytics and Information Management student at Purdue University, originally from Ho Chi Minh City. I help operations teams turn messy data into decisions they can act on, usually by finding the problem hiding in data they already have.</p>
-      <p>In Summer 2026 at Shopee Express, I reviewed 501 accident cases and found the company was recovering only 11% of accident costs. The penalty policy I designed could raise that to a projected 58%. Before that, I cleaned 150K+ CRM records at Tekup, verified market intelligence data at Renn Labs, and built a Workforce Capacity Planner for a fulfillment network.</p>
-      <p>I work mostly in SQL, Python, Excel and Power BI, and I’m Microsoft Fabric (DP-600) certified.</p>
-      <p>Outside of work, I play tennis and pickleball and try to hit the gym most days.</p>
-      <p>I’m looking for business, data, operations and supply chain analyst roles starting in 2027. <a href="assets/Tri_Vi_Resume.pdf" download>Download my resume</a> or <a href="#contact">get in touch</a>, and let’s talk.</p>
+    <div class="about">
+      <div class="about-text">
+        <p>I’m Tri Vi, a Business Analytics and Information Management student at Purdue University, originally from Ho Chi Minh City. I help operations teams turn messy data into decisions they can act on, usually by finding the problem hiding in data they already have.</p>
+        <p>In Summer 2026 at Shopee Express, I reviewed 501 accident cases and found the company was recovering only 11% of accident costs. The penalty policy I designed could raise that to a projected 58%. Before that, I cleaned 150K+ CRM records at Tekup, verified market intelligence data at Renn Labs, and built a Workforce Capacity Planner for a fulfillment network.</p>
+        <p>I work mostly in SQL, Python, Excel and Power BI, and I’m Microsoft Fabric (DP-600) certified.</p>
+        <p>Outside of work, I play tennis and pickleball and try to hit the gym most days.</p>
+        <p>I’m looking for business, data, operations and supply chain analyst roles starting in 2027. <a href="assets/Tri_Vi_Resume.pdf" download>Download my resume</a> or <a href="#contact">get in touch</a>, and let’s talk.</p>
+      </div>
+      <ul class="facts">
+        <li><b>Studying</b>Business Analytics &amp; Information Management, Purdue</li>
+        <li><b>Graduating</b>May 2027</li>
+        <li><b>From</b>Ho Chi Minh City, Vietnam</li>
+        <li><b>Worked with teams in</b>Vietnam, the US and Canada</li>
+        <li><b>Looking for</b>Full-time and internship roles</li>
+      </ul>
     </div>
   </section>
 
