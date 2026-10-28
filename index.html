@@ -46,7 +46,7 @@
   @media (max-width:640px) { nav ul li:nth-child(1), nav ul li:nth-child(2), nav ul li:nth-child(5) { display:none; } nav ul { gap:12px; font-size:.88rem; } .theme { margin-left:6px; } }
 
   /* hero */
-  .hero { position:relative; overflow:hidden; padding:110px 0 90px; }
+  .hero { position:relative; overflow:hidden; padding:110px 0 150px; }
   .blob { position:absolute; border-radius:50%; filter:blur(70px); opacity:.3; z-index:-1; animation:float 14s ease-in-out infinite alternate; }
   .b1 { width:380px; height:380px; background:var(--a1); top:-80px; left:-100px; }
   .b2 { width:420px; height:420px; background:var(--a2); top:40px; right:-140px; animation-delay:-5s; }
@@ -184,7 +184,7 @@
   /* print: light page, everything visible, no animation or tricks that need backgrounds */
   @media print {
     body { background:#fff; color:#000; font-size:11pt; }
-    nav, .blob, .filters, .hero .cta, .hero-chart, .theme { display:none; }
+    nav, .blob, .filters, .hero .cta, .hero-chart, .theme { display:none !important; }
     .hero { padding:16px 0; }
     .js .rv { opacity:1 !important; transform:none !important; transition:none; }
     .grad { background:none; color:#000; -webkit-text-fill-color:#000; }
@@ -203,9 +203,15 @@
   .theme:hover { border-color:var(--a1); }
 
   /* hero forecast chart: decorative, draws the "actual" line then fades in a dashed forecast and its range */
-  .hero-chart { position:absolute; left:calc(50% + 190px); right:0; top:60px; bottom:30px; width:auto; height:auto; z-index:-1; opacity:.55; pointer-events:none; }
+  /* one line in two pieces: a low strip under the text on the left, then a steep climb on the right where there is no text.
+     The strip ends exactly where the climb starts (x = 50% + 200px, 120px above the hero bottom). */
+  .hero-chart { position:absolute; z-index:-1; opacity:.55; pointer-events:none; }
+  .hc-strip { left:0; bottom:20px; width:calc(50% + 200px); height:110px; }
+  .hc-steep { left:calc(50% + 200px); top:60px; width:calc(50% - 200px); height:calc(100% - 180px); }
+  .hc-steep .hc-line { animation-delay:1.9s; animation-duration:1.2s; }
+  .hc-steep .hc-fc, .hc-steep .hc-band { animation-delay:3.1s; }
   .hero-chart * { vector-effect:non-scaling-stroke; }
-  @media (max-width:760px) { .hero { padding-bottom:150px; } .hero-chart { left:0; top:auto; bottom:20px; height:110px; } }
+  @media (max-width:760px) { .hc-steep { display:none; } .hc-strip { width:100%; } }
   .hc-line { fill:none; stroke:var(--a1); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; clip-path:inset(0 100% 0 0); animation:hc-draw 2.4s ease-out .3s forwards; }
   .hc-fc { fill:none; stroke:var(--a3); stroke-width:3; stroke-dasharray:8 8; opacity:0; animation:hc-fade .8s ease-out 2.6s forwards; }
   .hc-band { fill:var(--a3); opacity:0; animation:hc-band .8s ease-out 2.6s forwards; }
@@ -256,10 +262,13 @@
 
 <header class="hero">
   <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-  <svg class="hero-chart" viewBox="0 0 600 400" preserveAspectRatio="none" aria-hidden="true">
-    <polygon class="hc-band" points="420,190 480,138 540,96 600,30 600,150 540,160 480,170 420,190"/>
-    <polyline class="hc-line" points="0,385 60,350 120,368 180,300 240,322 300,250 360,272 420,190"/>
-    <polyline class="hc-fc" points="420,190 480,150 540,124 600,82"/>
+  <svg class="hero-chart hc-strip" viewBox="0 0 1000 110" preserveAspectRatio="none" aria-hidden="true">
+    <polyline class="hc-line" points="0,95 100,80 200,90 300,65 400,75 500,55 600,62 700,45 800,52 900,30 1000,10"/>
+  </svg>
+  <svg class="hero-chart hc-steep" viewBox="0 0 600 400" preserveAspectRatio="none" aria-hidden="true">
+    <polygon class="hc-band" points="340,200 420,128 500,78 600,10 600,95 500,140 420,172 340,200"/>
+    <polyline class="hc-line" points="0,400 70,330 140,352 210,262 280,290 340,200"/>
+    <polyline class="hc-fc" points="340,200 420,150 500,110 600,50"/>
   </svg>
   <div class="wrap hero-grid">
   <div>
