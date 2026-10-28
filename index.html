@@ -43,7 +43,7 @@
   nav ul { display:flex; gap:20px; list-style:none; margin:0; padding:0; font-size:.92rem; }
   nav ul a { text-decoration:none; color:var(--muted); }
   nav ul a:hover { color:var(--fg); }
-  @media (max-width:640px) { nav ul li:nth-child(1), nav ul li:nth-child(4) { display:none; } nav ul { gap:12px; font-size:.88rem; } .theme { margin-left:6px; } }
+  @media (max-width:640px) { nav ul li:nth-child(1), nav ul li:nth-child(2), nav ul li:nth-child(5) { display:none; } nav ul { gap:12px; font-size:.88rem; } .theme { margin-left:6px; } }
 
   /* hero */
   .hero { position:relative; overflow:hidden; padding:110px 0 190px; }
@@ -84,6 +84,7 @@
   .job:nth-child(3n)::before { border-color:var(--a3); }
   .when { font-size:.85rem; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
 
+  .about p { font-size:1.05rem; line-height:1.7; margin:0 0 12px; } .about p:last-child { margin:0; }
   .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px; box-shadow:var(--shadow); }
   .edu { border-left:6px solid var(--a2); }
   #leadership .card + .card { margin-top:16px; }
@@ -233,6 +234,7 @@
   <div class="wrap">
     <b class="serif">Tri Vi</b>
     <ul>
+      <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -274,8 +276,19 @@
     <div class="stat"><b class="serif grad">4.4%</b><span>average forecast error on Walmart weekly revenue, across 45 stores</span></div>
   </div>
 
+  <section id="about" class="rv">
+    <h2 class="serif"><small>01</small>About me</h2>
+    <div class="card about">
+      <p>I’m Tri Vi, a Business Analytics and Information Management student at Purdue University, originally from Ho Chi Minh City. I help operations teams turn messy data into decisions they can act on, usually by finding the problem hiding in data they already have.</p>
+      <p>In Summer 2026 at Shopee Express, I reviewed 501 accident cases and found the company was recovering only 11% of accident costs. The penalty policy I designed could raise that to a projected 58%. Before that, I cleaned 150K+ CRM records at Tekup, verified market intelligence data at Renn Labs, and built a Workforce Capacity Planner for a fulfillment network.</p>
+      <p>I work mostly in SQL, Python, Excel and Power BI, and I’m Microsoft Fabric (DP-600) certified.</p>
+      <p>Outside of work, I play tennis and pickleball and try to hit the gym most days.</p>
+      <p>I’m looking for business, data, operations and supply chain analyst roles starting in 2027. <a href="assets/Tri_Vi_Resume.pdf" download>Download my resume</a> or <a href="#contact">get in touch</a>, and let’s talk.</p>
+    </div>
+  </section>
+
   <section id="education" class="rv">
-    <h2 class="serif"><small>01</small>Education</h2>
+    <h2 class="serif"><small>02</small>Education</h2>
     <div class="card edu">
       <img class="logo" src="assets/logos/web/purdue.png" decoding="async" alt="Purdue University logo" onerror="this.remove()">
       <div class="when">Expected May 2027 · West Lafayette, IN</div>
@@ -294,7 +307,7 @@
   </section>
 
   <section id="experience">
-    <h2 class="serif rv"><small>02</small>Work experience</h2>
+    <h2 class="serif rv"><small>03</small>Work experience</h2>
     <div class="timeline">
       <div class="job rv">
         <img class="logo" src="assets/logos/web/shopee.png" decoding="async" alt="Shopee logo" onerror="this.remove()">
@@ -384,7 +397,7 @@
   </section>
 
   <section id="projects">
-    <h2 class="serif rv"><small>03</small>Projects</h2>
+    <h2 class="serif rv"><small>04</small>Projects</h2>
     <div class="filters" role="group" aria-label="Filter projects">
       <button class="chipbtn" data-f="all" aria-pressed="true">All</button>
       <button class="chipbtn" data-f="forecasting" aria-pressed="false">Forecasting</button>
@@ -492,7 +505,7 @@
   </section>
 
   <section id="leadership" class="rv">
-    <h2 class="serif"><small>04</small>Leadership</h2>
+    <h2 class="serif"><small>05</small>Leadership</h2>
     <div class="card">
       <div class="when">FEB 2025</div>
       <h3>Team Leader · Midwest Entrepreneurship Case Competition (Sage Business)</h3>
@@ -521,7 +534,7 @@
   </section>
 
   <section id="skills" class="rv">
-    <h2 class="serif"><small>05</small>Skills</h2>
+    <h2 class="serif"><small>06</small>Skills</h2>
     <div class="skills">
       <div><h3>Analytics &amp; Programming</h3><ul class="tags"><li>Python</li><li>SQL</li><li>R</li><li>Excel</li><li>DAX</li><li>PySpark</li></ul></div>
       <div><h3>Data Visualization</h3><ul class="tags"><li>Power BI</li><li>Tableau</li><li>Looker Studio</li><li>Microsoft Fabric</li><li>Matplotlib</li><li>Seaborn</li></ul></div>
