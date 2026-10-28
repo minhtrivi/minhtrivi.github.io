@@ -12,6 +12,10 @@
 <meta property="og:image" content="https://minhtrivi.github.io/assets/og-image.png">
 <meta property="og:url" content="https://minhtrivi.github.io/">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
   :root {
     --bg:#fbfaf7; --fg:#16161a; --muted:#64646e; --card:#ffffff; --line:#e6e3dc;
@@ -19,29 +23,31 @@
     --shadow:0 10px 30px -12px rgba(30,20,60,.18);
   }
   @media (prefers-color-scheme: dark) {
-    :root { --a1:#60a5fa; --a2:#2563eb; --a3:#38bdf8; --a1t:#93c5fd; --bg:#0e0e12; --fg:#f2f1ee; --muted:#9a9aa6; --card:#17171d; --line:#26262f;
+    :root:not([data-theme="light"]) { --a1:#60a5fa; --a2:#2563eb; --a3:#38bdf8; --a1t:#93c5fd; --bg:#0e0e12; --fg:#f2f1ee; --muted:#9a9aa6; --card:#17171d; --line:#26262f;
             --shadow:0 10px 30px -12px rgba(0,0,0,.6); }
   }
+  :root[data-theme="dark"] { --a1:#60a5fa; --a2:#2563eb; --a3:#38bdf8; --a1t:#93c5fd; --bg:#0e0e12; --fg:#f2f1ee; --muted:#9a9aa6; --card:#17171d; --line:#26262f;
+            --shadow:0 10px 30px -12px rgba(0,0,0,.6); }
   * { box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { margin:0; font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--fg); }
+  body { margin:0; font:17px/1.65 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--fg); }
   a { color:inherit; }
   .wrap { max-width:960px; margin:0 auto; padding:0 20px; }
-  .serif { font-family:ui-serif,Georgia,"Times New Roman",serif; }
+  .serif { font-family:"Fraunces",ui-serif,Georgia,"Times New Roman",serif; }
   .grad { background:linear-gradient(100deg,var(--a1),var(--a2) 60%,var(--a3)); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
   /* nav */
   nav { position:sticky; top:0; z-index:10; backdrop-filter:blur(14px); background:color-mix(in srgb,var(--bg) 72%,transparent); border-bottom:1px solid var(--line); }
-  nav .wrap { display:flex; justify-content:space-between; align-items:center; height:60px; }
-  nav b { font-size:1.1rem; letter-spacing:.02em; }
+  nav .wrap { display:flex; justify-content:space-between; align-items:center; height:60px; gap:16px; }
+  nav b { font-size:1.1rem; letter-spacing:.02em; white-space:nowrap; }
   nav ul { display:flex; gap:20px; list-style:none; margin:0; padding:0; font-size:.92rem; }
   nav ul a { text-decoration:none; color:var(--muted); }
   nav ul a:hover { color:var(--fg); }
-  @media (max-width:640px) { nav ul li:nth-child(1), nav ul li:nth-child(2), nav ul li:nth-child(5) { display:none; } }
+  @media (max-width:640px) { nav ul li:nth-child(1), nav ul li:nth-child(4) { display:none; } nav ul { gap:12px; font-size:.88rem; } .theme { margin-left:6px; } }
 
   /* hero */
   .hero { position:relative; overflow:hidden; padding:110px 0 70px; }
-  .blob { position:absolute; border-radius:50%; filter:blur(70px); opacity:.45; z-index:-1; animation:float 14s ease-in-out infinite alternate; }
+  .blob { position:absolute; border-radius:50%; filter:blur(70px); opacity:.3; z-index:-1; animation:float 14s ease-in-out infinite alternate; }
   .b1 { width:380px; height:380px; background:var(--a1); top:-80px; left:-100px; }
   .b2 { width:420px; height:420px; background:var(--a2); top:40px; right:-140px; animation-delay:-5s; }
   .b3 { width:300px; height:300px; background:var(--a3); bottom:-120px; left:35%; animation-delay:-9s; }
@@ -62,9 +68,9 @@
   .stat span { color:var(--muted); font-size:.92rem; }
 
   /* sections */
-  section { padding:56px 0 8px; }
+  section { padding:72px 0 0; }
   h2 { font-size:clamp(1.8rem,4vw,2.6rem); margin:0 0 28px; letter-spacing:-.02em; }
-  h2 small { display:block; font-family:system-ui,sans-serif; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:var(--a1t); margin-bottom:6px; }
+  h2 small { display:block; font-family:"Inter",system-ui,sans-serif; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:var(--a1t); margin-bottom:6px; }
   h3 { margin:0; font-size:1.12rem; }
   .meta { color:var(--muted); font-size:.92rem; margin:2px 0 0; }
   ul.pts { margin:12px 0 0; padding-left:20px; }
@@ -78,7 +84,6 @@
   .job:nth-child(3n)::before { border-color:var(--a3); }
   .when { font-size:.85rem; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; }
 
-  .about p { font-size:1.05rem; line-height:1.7; margin:0 0 12px; } .about p:last-child { margin:0; }
   .card { background:var(--card); border:1px solid var(--line); border-radius:20px; padding:24px; box-shadow:var(--shadow); }
   .edu { border-left:6px solid var(--a2); }
   #leadership .card + .card { margin-top:16px; }
@@ -92,13 +97,13 @@
   .stack { color:var(--muted); font-size:.85rem; }
   .proj.feature { grid-column:1 / -1; }
   .proj.feature .big + .meta { margin:0 0 14px; }
-  .ask { font-family:ui-serif,Georgia,"Times New Roman",serif; font-style:italic; font-size:1.05rem; margin:10px 0 0; }
+  .ask { font-family:"Fraunces",ui-serif,Georgia,"Times New Roman",serif; font-style:italic; font-size:1.05rem; margin:10px 0 0; }
   .links { margin-top:18px; }
   .links .btn { font-size:.92rem; padding:10px 18px; }
 
   /* hero photo */
   .hero-grid { display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
-  .avatar { position:relative; width:220px; height:220px; border-radius:50%; display:grid; place-items:center; font:700 4rem ui-serif,Georgia,serif; color:#fff; background:linear-gradient(135deg,var(--a1),var(--a2) 60%,var(--a3)); box-shadow:var(--shadow); }
+  .avatar { position:relative; width:220px; height:220px; border-radius:50%; display:grid; place-items:center; font:700 4rem "Fraunces",ui-serif,Georgia,serif; color:#fff; background:linear-gradient(135deg,var(--a1),var(--a2) 60%,var(--a3)); box-shadow:var(--shadow); }
   .avatar img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:50%; border:4px solid var(--card); }
   @media (max-width:760px) { .hero-grid { grid-template-columns:1fr; } .avatar { width:140px; height:140px; font-size:2.6rem; order:-1; } }
 
@@ -134,9 +139,9 @@
   .d-new { stroke:var(--a3); stroke-width:3.5; fill:none; }
   .d-box { fill:var(--card); stroke:var(--a2); stroke-width:2; }
   .d-ai { fill:var(--a2); }
-  .d-txt { fill:var(--fg); font:600 13px system-ui,sans-serif; }
-  .d-sub { fill:var(--muted); font:12px system-ui,sans-serif; }
-  .d-white { fill:#fff; font:600 14px system-ui,sans-serif; }
+  .d-txt { fill:var(--fg); font:600 13px "Inter",system-ui,sans-serif; }
+  .d-sub { fill:var(--muted); font:12px "Inter",system-ui,sans-serif; }
+  .d-white { fill:#fff; font:600 14px "Inter",system-ui,sans-serif; }
   .d-arrow { stroke:var(--muted); stroke-width:2; fill:none; marker-end:url(#ah); }
 
   /* skills */
@@ -169,7 +174,7 @@
   /* print: light page, everything visible, no animation or tricks that need backgrounds */
   @media print {
     body { background:#fff; color:#000; font-size:11pt; }
-    nav, .blob, .filters, .hero .cta { display:none; }
+    nav, .blob, .filters, .hero .cta, .hero-chart, .theme { display:none; }
     .hero { padding:16px 0; }
     .js .rv { opacity:1 !important; transform:none !important; transition:none; }
     .grad { background:none; color:#000; -webkit-text-fill-color:#000; }
@@ -181,6 +186,45 @@
     .contact a { color:#000; }
     a { text-decoration:none; }
   }
+
+  /* theme toggle */
+  nav ul { margin-left:auto; }
+  .theme { margin-left:16px; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:var(--card); color:var(--fg); cursor:pointer; font-size:1rem; line-height:1; }
+  .theme:hover { border-color:var(--a1); }
+
+  /* hero forecast chart: decorative, draws the "actual" line then fades in a dashed forecast and its range */
+  .hero-chart { position:absolute; left:0; bottom:0; width:100%; height:auto; z-index:-1; opacity:.45; pointer-events:none; }
+  .hc-line { fill:none; stroke:var(--a1); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1; animation:hc-draw 2.4s ease-out .3s forwards; }
+  .hc-fc { fill:none; stroke:var(--a3); stroke-width:3; stroke-dasharray:8 8; opacity:0; animation:hc-fade .8s ease-out 2.6s forwards; }
+  .hc-band { fill:var(--a3); opacity:0; animation:hc-band .8s ease-out 2.6s forwards; }
+  .hc-dot { fill:var(--a1); opacity:0; animation:hc-fade .4s 2.6s forwards; }
+  @keyframes hc-draw { to { stroke-dashoffset:0; } }
+  @keyframes hc-fade { to { opacity:1; } }
+  @keyframes hc-band { to { opacity:.18; } }
+
+  /* hover polish */
+  nav ul a { background:linear-gradient(currentColor,currentColor) 0 100%/0 1.5px no-repeat; padding-bottom:2px; transition:background-size .25s, color .2s; }
+  nav ul a:hover { background-size:100% 1.5px; }
+  .logo { transition:transform .25s, box-shadow .25s; }
+  .job:hover > .logo, .edu:hover > .logo { transform:translateY(-2px) rotate(-2deg); box-shadow:var(--shadow); }
+  a.chip { transition:transform .2s, border-color .2s; }
+  a.chip:hover { transform:translateY(-2px); }
+
+  /* contact buttons with icons, footer */
+  .contact .links-ic { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:22px 0 0; }
+  .contact .links-ic a { display:inline-flex; align-items:center; gap:8px; margin:0; padding:10px 16px; border-radius:999px; background:rgba(255,255,255,.14); text-decoration:none; transition:background .2s, transform .2s; }
+  .contact .links-ic a:hover { background:rgba(255,255,255,.26); transform:translateY(-2px); }
+  .links-ic svg { width:18px; height:18px; flex:none; }
+  footer { text-align:left; }
+  .foot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; border-top:1px solid var(--line); padding-top:20px; }
+  footer a { color:var(--muted); text-decoration:none; }
+  footer a:hover { color:var(--fg); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hc-line { stroke-dashoffset:0; animation:none; }
+    .hc-fc, .hc-dot { opacity:1; animation:none; }
+    .hc-band { opacity:.18; animation:none; }
+  }
 </style>
 </head>
 <body>
@@ -188,23 +232,29 @@
   <div class="wrap">
     <b class="serif">Tri Vi</b>
     <ul>
-      <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="theme" type="button" aria-label="Switch between light and dark mode">☾</button>
   </div>
 </nav>
 
 <header class="hero">
   <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <svg class="hero-chart" viewBox="0 0 1200 300" aria-hidden="true">
+    <polygon class="hc-band" points="800,110 880,78 960,82 1040,46 1120,50 1200,20 1200,90 1120,110 1040,94 960,118 880,102 800,110"/>
+    <polyline class="hc-line" pathLength="1" points="0,220 80,200 160,215 240,170 320,185 400,140 480,160 560,120 640,135 720,95 800,110"/>
+    <polyline class="hc-fc" points="800,110 880,90 960,100 1040,70 1120,80 1200,55"/>
+    <circle class="hc-dot" cx="800" cy="110" r="6"/>
+  </svg>
   <div class="wrap hero-grid">
   <div>
     <span class="hello">Purdue · Class of 2027 · Open to full-time and internship roles</span>
     <h1 class="serif">Hi, I’m <span class="grad">Tri&nbsp;Vi.</span></h1>
-    <p class="lede">I study Business Analytics at Purdue and spend a lot of time making operations a little less chaotic.</p>
+    <p class="lede">I study business analytics at Purdue and spend a lot of time making operations a little less chaotic.</p>
     <ul class="tags roles" aria-label="Roles I’m open to"><li>Business Analyst</li><li>Data Analyst</li><li>Operations Analyst</li><li>Supply Chain</li><li>Project Management</li></ul>
     <div class="cta">
       <a class="btn fill" href="#experience">See my experience</a>
@@ -224,19 +274,8 @@
     <div class="stat"><b class="serif grad">4.4%</b><span>average forecast error on Walmart weekly revenue, across 45 stores</span></div>
   </div>
 
-  <section id="about" class="rv">
-    <h2 class="serif"><small>01</small>About me</h2>
-    <div class="card about">
-      <p>I’m Tri Vi, a Business Analytics and Information Management student at Purdue University, originally from Ho Chi Minh City. I help operations teams turn messy data into decisions they can act on, usually by finding the problem hiding in data they already have.</p>
-      <p>In Summer 2026 at Shopee Express, I reviewed 501 accident cases and found the company was recovering only 11% of accident costs. The penalty policy I designed could raise that to a projected 58%. Before that, I cleaned 150K+ CRM records at Tekup, verified market intelligence data at Renn Labs, and built a Workforce Capacity Planner for a fulfillment network.</p>
-      <p>I work mostly in SQL, Python, Excel and Power BI, and I’m Microsoft Fabric (DP-600) certified.</p>
-      <p>Outside of work, I play tennis and pickleball and try to hit the gym most days.</p>
-      <p>I’m looking for business, data, operations and supply chain analyst roles starting in 2027. <a href="assets/Tri_Vi_Resume.pdf" download>Download my resume</a> or <a href="#contact">get in touch</a>, and let’s talk.</p>
-    </div>
-  </section>
-
   <section id="education" class="rv">
-    <h2 class="serif"><small>02</small>Education</h2>
+    <h2 class="serif"><small>01</small>Education</h2>
     <div class="card edu">
       <img class="logo" src="assets/logos/web/purdue.png" decoding="async" alt="Purdue University logo" onerror="this.remove()">
       <div class="when">Expected May 2027 · West Lafayette, IN</div>
@@ -255,7 +294,7 @@
   </section>
 
   <section id="experience">
-    <h2 class="serif rv"><small>03</small>Work experience</h2>
+    <h2 class="serif rv"><small>02</small>Work experience</h2>
     <div class="timeline">
       <div class="job rv">
         <img class="logo" src="assets/logos/web/shopee.png" decoding="async" alt="Shopee logo" onerror="this.remove()">
@@ -345,7 +384,7 @@
   </section>
 
   <section id="projects">
-    <h2 class="serif rv"><small>04</small>Projects</h2>
+    <h2 class="serif rv"><small>03</small>Projects</h2>
     <div class="filters" role="group" aria-label="Filter projects">
       <button class="chipbtn" data-f="all" aria-pressed="true">All</button>
       <button class="chipbtn" data-f="forecasting" aria-pressed="false">Forecasting</button>
@@ -453,7 +492,7 @@
   </section>
 
   <section id="leadership" class="rv">
-    <h2 class="serif"><small>05</small>Leadership</h2>
+    <h2 class="serif"><small>04</small>Leadership</h2>
     <div class="card">
       <div class="when">FEB 2025</div>
       <h3>Team Leader · Midwest Entrepreneurship Case Competition (Sage Business)</h3>
@@ -482,7 +521,7 @@
   </section>
 
   <section id="skills" class="rv">
-    <h2 class="serif"><small>06</small>Skills</h2>
+    <h2 class="serif"><small>05</small>Skills</h2>
     <div class="skills">
       <div><h3>Analytics &amp; Programming</h3><ul class="tags"><li>Python</li><li>SQL</li><li>R</li><li>Excel</li><li>DAX</li><li>PySpark</li></ul></div>
       <div><h3>Data Visualization</h3><ul class="tags"><li>Power BI</li><li>Tableau</li><li>Looker Studio</li><li>Microsoft Fabric</li><li>Matplotlib</li><li>Seaborn</li></ul></div>
@@ -493,15 +532,30 @@
 
   <section id="contact" class="contact rv">
     <h2 class="serif">Let’s build something useful.</h2>
-    <p><a href="mailto:viminhtri.15@gmail.com">viminhtri.15@gmail.com</a>
-       <a href="https://linkedin.com/in/triminhvi">LinkedIn</a>
-       <a href="https://github.com/vmtri15">GitHub</a></p>
+    <p class="links-ic">
+      <a href="mailto:viminhtri.15@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>viminhtri.15@gmail.com</a>
+      <a href="https://linkedin.com/in/triminhvi"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4" fill="currentColor"/><text x="12" y="17" font-family="Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">in</text></svg>LinkedIn</a>
+      <a href="https://github.com/vmtri15"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
+      <a href="assets/Tri_Vi_Resume.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 12v6m-3-3 3 3 3-3"/></svg>Resume</a>
+    </p>
   </section>
 </main>
-<footer>© Tri Vi</footer>
+<footer><div class="wrap foot"><span>© 2026 Tri Vi</span><span><a href="https://linkedin.com/in/triminhvi">LinkedIn</a> · <a href="https://github.com/vmtri15">GitHub</a> · <a href="#">Back to top ↑</a></span></div></footer>
 
 <script>
   document.documentElement.classList.add('js');
+
+  // light/dark toggle: remembers the choice; without one the page follows the system setting
+  const themeBtn = document.querySelector('.theme');
+  const current = () => document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  const showIcon = () => { themeBtn.textContent = current() === 'dark' ? '☀' : '☾'; };
+  themeBtn.addEventListener('click', () => {
+    const t = current() === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = t;
+    try { localStorage.setItem('theme', t); } catch (e) {}
+    showIcon();
+  });
+  showIcon();
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && (e.target.classList.add('in'), io.unobserve(e.target))), { threshold: .12 });
   document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
